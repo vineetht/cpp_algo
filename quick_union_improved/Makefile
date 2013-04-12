@@ -1,5 +1,5 @@
-MYPROG:=dynamicC
-SOURCES:= run.cc QuickFindUF.h
+MYPROG:=quickUI
+SOURCES:= run.cc quick_union_improved.h quick_union_improved.cc
 
 CC:=g++
 

@@ -1,2 +1,2 @@
-c--_algo
+cpp_algo
 ========

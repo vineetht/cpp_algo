@@ -19,7 +19,7 @@ Pvt functions are root(elem) which follows the elem list to return the root
 [3] Quick Merge Improvement
 ===========================
 An obvious improvement is to merge the smaller tree to bigger tree when union is called, thus depth of
-the tree can be contained to log N to the base 2. 
+the tree can be contained to log(n) to the base 2. 
 
 
 
@@ -27,7 +27,32 @@ the tree can be contained to log N to the base 2.
 
 Tips on C++
 ===========
-Output buffer is cleared when 1. the buffer is full, 2. explicit buffer clear or 3. during input. For 
-e.g. "cin >> s" will clear buffer.
+Output buffer is cleared when 1. the buffer is full, 2. explicit buffer clear or 3. during input. 
+    For e.g. "cin >> s" will clear buffer.
 Operators <<, +, >> are left associative, e.g. cout << s << t => (cout << s) << t. Now since << returns
-ostream object, the << operator can act on ostream (cout) and t.
+    ostream object, the << operator can act on ostream (cout) and t.
+Most operators are left associative, although the assignment operators and operators taking single arg
+    are right associative.
+const std::string::size_type cols = 2, used to store length of a string. Possible since size_type is 
+    typedef -ed in class string
+float is single precision whereas double is double precision, float permits six significant digits,
+    whereas double gives atleast 15 significant digits.
+typedef scope is same as any of the supported variables.
+streamsize denotes the precision length of a stream, used to setprecision(streamsize val) with cout,
+    retrieved with streamsize val = cout.precision(), and set by cout.precision(val) or along with cout
+    Similar to that is vector<double>::size_type
+Standard confirming C++ implementation must implement sort to be no slower that nlog(n)
+Putting functions calls returning a value in a cout statement may cause spurious output, if the the 
+    function throws an exception. It's always good to have them in separate statements
+    For e.g. cout << "Final grade is " << setprecision(3) << grade(...) << setprecision(prev) << endl
+    could result in setting cout's precision, but no undoing since grade threw an exception.
+A NON CONSTANT REFERENCE function argument would mean that the the function may alter the contents.
+    for e.g. istream& read_hw(istream& in, vector<double>& hw) // hw is an input that the caller 
+    expects read_hw to modify. in is made reference so that read_hw could return it
+Refer the implementation-supplied headers as standard headers rather than header FILES. Reason being
+    system headers need not be implemented as files.
+
+Some good links and explanations:
+=================================
+http://stackoverflow.com/questions/7439167/returning-an-empty-vector-of-strings-if-key-is-not-found
+

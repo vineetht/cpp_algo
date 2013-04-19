@@ -15,6 +15,7 @@ using std::streamsize;
 using std::vector;
 using std::endl;
 using std::domain_error;
+using std::getline;
 
 int main()
 {

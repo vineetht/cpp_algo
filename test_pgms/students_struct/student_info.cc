@@ -31,8 +31,12 @@ istream& read_hw(std::istream& in, vector<double>& hw)
 istream& read(std::istream& in, StudentInfo& s)
 {
     in >> s.name >> s.mid_term >> s.final;
-    std::cout << s.name << " " << s.mid_term << " " << s.final << std::endl;
-    return read_hw(in, s.hw);
+
+    // Check for end of student list, dont clear the istream status
+    if (in)
+        return read_hw(in, s.hw);
+    else
+        return in;
 }
 
 

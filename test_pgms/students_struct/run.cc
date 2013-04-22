@@ -30,10 +30,22 @@ int main()
     sort(student_list.begin(), student_list.end(), compare);
     streamsize prev = cout.precision();
 
+    vector<StudentInfo> failed_list;
+    failed_list = extract_failed_iter(student_list);
+
+    cout << "Students passed: " << endl;
     for(vector<StudentInfo>::size_type i = 0; 
         i < student_list.size(); i++) {
         double final_grade = grade(student_list[i]);
-        cout << student_list[i].name << " scored " << setprecision(3) 
+        cout << student_list[i].name << " " << setprecision(3) 
+             << final_grade << setprecision(prev) << endl;
+    }
+
+    cout << "Students failed: " << endl;
+    for(vector<StudentInfo>::size_type i = 0; 
+        i < failed_list.size(); i++) {
+        double final_grade = grade(failed_list[i]);
+        cout << failed_list[i].name << " " << setprecision(3) 
              << final_grade << setprecision(prev) << endl;
     }
     

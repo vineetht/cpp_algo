@@ -8,13 +8,15 @@
 using std::vector;
 using std::domain_error;
 using std::istream;
+using std::endl;
+using std::cout;
 
 bool compare(const StudentInfo& left, const StudentInfo& right)
 {
     return left.name < right.name;
 }
 
-istream& read_hw(std::istream& in, vector<double>& hw)
+istream& read_hw(istream& in, vector<double>& hw)
 {
     hw.clear();
 
@@ -22,13 +24,12 @@ istream& read_hw(std::istream& in, vector<double>& hw)
     while (in >> x)
         hw.push_back(x);
 
-    std::cout << "done reading hw, last one was " << hw.back() << std::endl;
     in.clear();
 
     return in;
 }
 
-istream& read(std::istream& in, StudentInfo& s)
+istream& read(istream& in, StudentInfo& s)
 {
     in >> s.name >> s.mid_term >> s.final;
 
@@ -39,4 +40,35 @@ istream& read(std::istream& in, StudentInfo& s)
         return in;
 }
 
+vector<StudentInfo> extract_failed(vector<StudentInfo>& sl)
+{
+    vector<StudentInfo> fail_list;
+    vector<StudentInfo>::size_type size = 0;
 
+    while (size != sl.size()) {
+        if (grade(sl[size]) < 60) {
+            fail_list.push_back(sl[size]);
+            sl.erase(sl.begin() + size);
+        } else
+            size++;
+    }
+
+    return fail_list;
+}
+
+vector<StudentInfo> extract_failed_iter(vector<StudentInfo>& sl)
+{
+    vector<StudentInfo> fail_list;
+    vector<StudentInfo>::iterator it = sl.begin();
+
+    while (it != sl.end()) {
+        if (grade(*it) < 60) {
+            fail_list.push_back(*it);
+            sl.erase(it);
+        }
+        else
+            it++;
+    }
+
+    return fail_list;
+}

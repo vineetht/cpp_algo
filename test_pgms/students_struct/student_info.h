@@ -14,5 +14,7 @@ struct StudentInfo {
 bool compare(const StudentInfo& left, const StudentInfo& right);
 std::istream& read(std::istream& in, StudentInfo& student);
 std::istream& read_hw(std::istream& in, std::vector<double>& hw);
+std::vector<StudentInfo> extract_failed(std::vector<StudentInfo>& sl);
+std::vector<StudentInfo> extract_failed_iter(std::vector<StudentInfo>& sl);
 
 #endif //STUDENT_INFO_H
